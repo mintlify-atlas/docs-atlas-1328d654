@@ -7,10 +7,6 @@ description: "Retrieve client information using their phone number"
 
 Retrieves client information using their phone number. The system automatically cleans the number (removes prefixes like '+') and performs the search in WispHub.
 
-### Authentication
-
-This endpoint requires authentication. Include your API key in the request headers.
-
 ### Path Parameters
 
 <ParamField path="phone" type="string" required>
@@ -112,7 +108,6 @@ Returns a `BackendResponse` containing a single `ClientResponse` object.
 <CodeGroup>
 ```bash curl
 curl -X GET "https://api.wisphub.example/api/v1/clients/by-phone/%2B573001234567" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json"
 ```
 
@@ -125,7 +120,6 @@ encoded_phone = urllib.parse.quote(phone)
 url = f"https://api.wisphub.example/api/v1/clients/by-phone/{encoded_phone}"
 
 headers = {
-    "Authorization": "Bearer YOUR_API_KEY",
     "Content-Type": "application/json"
 }
 
@@ -139,7 +133,6 @@ const phone = encodeURIComponent('+573001234567');
 fetch(`https://api.wisphub.example/api/v1/clients/by-phone/${phone}`, {
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer YOUR_API_KEY',
     'Content-Type': 'application/json'
   }
 })
@@ -189,20 +182,6 @@ fetch(`https://api.wisphub.example/api/v1/clients/by-phone/${phone}`, {
     "action": "client_not_found",
     "data": null,
     "message": "Client not found"
-  }
-  ```
-</ResponseField>
-
-<ResponseField name="401 Unauthorized">
-  Authentication credentials are missing or invalid
-  
-  ```json
-  {
-    "ok": false,
-    "type": "error",
-    "action": "error",
-    "data": null,
-    "message": "Unauthorized access"
   }
   ```
 </ResponseField>

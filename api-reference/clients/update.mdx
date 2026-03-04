@@ -7,10 +7,6 @@ description: "Update critical profile data for a client in WispHub"
 
 Updates critical profile data for a client in WispHub, such as their phone number or identity document (cédula). Especially useful when linking users without previously structured data.
 
-### Authentication
-
-This endpoint requires authentication. Include your API key in the request headers.
-
 ### Path Parameters
 
 <ParamField path="service_id" type="integer" required>
@@ -60,7 +56,6 @@ Returns a `BackendResponse` with no data payload.
 <CodeGroup>
 ```bash curl
 curl -X PUT "https://api.wisphub.example/api/v1/clients/12345" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "phone": "+573001234567",
@@ -75,7 +70,6 @@ service_id = 12345
 url = f"https://api.wisphub.example/api/v1/clients/{service_id}"
 
 headers = {
-    "Authorization": "Bearer YOUR_API_KEY",
     "Content-Type": "application/json"
 }
 
@@ -94,7 +88,6 @@ const serviceId = 12345;
 fetch(`https://api.wisphub.example/api/v1/clients/${serviceId}`, {
   method: 'PUT',
   headers: {
-    'Authorization': 'Bearer YOUR_API_KEY',
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
@@ -147,20 +140,6 @@ fetch(`https://api.wisphub.example/api/v1/clients/${serviceId}`, {
     "action": "client_update_failed",
     "data": null,
     "message": "No se pudo actualizar el cliente. Verifique el ID."
-  }
-  ```
-</ResponseField>
-
-<ResponseField name="401 Unauthorized">
-  Authentication credentials are missing or invalid
-  
-  ```json
-  {
-    "ok": false,
-    "type": "error",
-    "action": "error",
-    "data": null,
-    "message": "Unauthorized access"
   }
   ```
 </ResponseField>

@@ -7,10 +7,6 @@ description: "Retrieve client information using their identity document (cédula
 
 Retrieves client information using their identity document (cédula). Searches the WispHub system and returns the associated service details.
 
-### Authentication
-
-This endpoint requires authentication. Include your API key in the request headers.
-
 ### Path Parameters
 
 <ParamField path="document" type="string" required>
@@ -112,7 +108,6 @@ Returns a `BackendResponse` containing a single `ClientResponse` object.
 <CodeGroup>
 ```bash curl
 curl -X GET "https://api.wisphub.example/api/v1/clients/by-document/1234567890" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json"
 ```
 
@@ -121,7 +116,6 @@ import requests
 
 url = "https://api.wisphub.example/api/v1/clients/by-document/1234567890"
 headers = {
-    "Authorization": "Bearer YOUR_API_KEY",
     "Content-Type": "application/json"
 }
 
@@ -133,7 +127,6 @@ print(response.json())
 fetch('https://api.wisphub.example/api/v1/clients/by-document/1234567890', {
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer YOUR_API_KEY',
     'Content-Type': 'application/json'
   }
 })
@@ -197,20 +190,6 @@ fetch('https://api.wisphub.example/api/v1/clients/by-document/1234567890', {
     "action": "invalid_document",
     "data": null,
     "message": "Invalid document format"
-  }
-  ```
-</ResponseField>
-
-<ResponseField name="401 Unauthorized">
-  Authentication credentials are missing or invalid
-  
-  ```json
-  {
-    "ok": false,
-    "type": "error",
-    "action": "error",
-    "data": null,
-    "message": "Unauthorized access"
   }
   ```
 </ResponseField>

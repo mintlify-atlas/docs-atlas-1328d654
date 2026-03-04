@@ -7,10 +7,6 @@ description: "Retrieve a list of all active clients registered in the system"
 
 Retrieves the general list of all active clients registered in the WispHub system. Returns a parsed list with essential details of each service and contact information.
 
-### Authentication
-
-This endpoint requires authentication. Include your API key in the request headers.
-
 ### Response
 
 Returns a `BackendResponse` containing an array of `ClientResponse` objects.
@@ -106,7 +102,6 @@ Returns a `BackendResponse` containing an array of `ClientResponse` objects.
 <CodeGroup>
 ```bash curl
 curl -X GET "https://api.wisphub.example/api/v1/clients/" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json"
 ```
 
@@ -115,7 +110,6 @@ import requests
 
 url = "https://api.wisphub.example/api/v1/clients/"
 headers = {
-    "Authorization": "Bearer YOUR_API_KEY",
     "Content-Type": "application/json"
 }
 
@@ -127,7 +121,6 @@ print(response.json())
 fetch('https://api.wisphub.example/api/v1/clients/', {
   method: 'GET',
   headers: {
-    'Authorization': 'Bearer YOUR_API_KEY',
     'Content-Type': 'application/json'
   }
 })
@@ -186,20 +179,6 @@ fetch('https://api.wisphub.example/api/v1/clients/', {
 ```
 
 ### Error Responses
-
-<ResponseField name="401 Unauthorized">
-  Authentication credentials are missing or invalid
-  
-  ```json
-  {
-    "ok": false,
-    "type": "error",
-    "action": "error",
-    "data": null,
-    "message": "Unauthorized access"
-  }
-  ```
-</ResponseField>
 
 <ResponseField name="500 Internal Server Error">
   An error occurred while fetching clients from WispHub

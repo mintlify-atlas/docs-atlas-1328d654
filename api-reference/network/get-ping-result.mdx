@@ -11,14 +11,6 @@ Retrieves the resolved result of a previously initialized PING task. This endpoi
 This endpoint should be called after creating a ping task using the [Create Ping Task](/api-reference/network/create-ping) endpoint. Poll this endpoint until you receive a final status.
 </Note>
 
-### Authentication
-
-This endpoint requires authentication using a Bearer token.
-
-```bash
-Authorization: Bearer YOUR_API_TOKEN
-```
-
 ### Path Parameters
 
 <ParamField path="task_id" type="string" required>
@@ -94,8 +86,7 @@ The endpoint analyzes packet loss to determine connection quality:
 <CodeGroup>
 
 ```bash curl
-curl -X GET https://api.wisphub.com/api/v1/ping/550e8400-e29b-41d4-a716-446655440000/ \
-  -H "Authorization: Bearer YOUR_API_TOKEN"
+curl -X GET https://api.wisphub.com/api/v1/ping/550e8400-e29b-41d4-a716-446655440000/
 ```
 
 ```python Python
@@ -103,14 +94,11 @@ import requests
 import time
 
 url = "https://api.wisphub.com/api/v1/ping/550e8400-e29b-41d4-a716-446655440000/"
-headers = {
-    "Authorization": "Bearer YOUR_API_TOKEN"
-}
 
 # Poll for results
 max_attempts = 10
 for attempt in range(max_attempts):
-    response = requests.get(url, headers=headers)
+    response = requests.get(url)
     result = response.json()
     
     if result['action'] != 'pending':
@@ -125,10 +113,7 @@ const taskId = '550e8400-e29b-41d4-a716-446655440000';
 const url = `https://api.wisphub.com/api/v1/ping/${taskId}/`;
 
 const response = await fetch(url, {
-  method: 'GET',
-  headers: {
-    'Authorization': 'Bearer YOUR_API_TOKEN'
-  }
+  method: 'GET'
 });
 
 const data = await response.json();

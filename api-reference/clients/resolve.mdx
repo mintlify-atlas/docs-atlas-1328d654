@@ -7,10 +7,6 @@ description: "Identify and verify a client in a single call without knowing thei
 
 Identifies and verifies a client in a single call, without needing to know their service_id beforehand. The endpoint searches for candidate clients by name and tests each one against the provided data. Useful for users without a registered document or phone number.
 
-### Authentication
-
-This endpoint requires authentication. Include your API key in the request headers.
-
 ### Request Body
 
 <ParamField body="name" type="string">
@@ -128,7 +124,6 @@ Returns a `BackendResponse` containing the identified and verified client.
 <CodeGroup>
 ```bash curl
 curl -X POST "https://api.wisphub.example/api/v1/clients/resolve" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Juan Pérez",
@@ -144,7 +139,6 @@ import requests
 url = "https://api.wisphub.example/api/v1/clients/resolve"
 
 headers = {
-    "Authorization": "Bearer YOUR_API_KEY",
     "Content-Type": "application/json"
 }
 
@@ -163,7 +157,6 @@ print(response.json())
 fetch('https://api.wisphub.example/api/v1/clients/resolve', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer YOUR_API_KEY',
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
@@ -249,20 +242,6 @@ fetch('https://api.wisphub.example/api/v1/clients/resolve', {
     "action": "client_not_found",
     "data": null,
     "message": "Ningún cliente coincide con todos los datos proporcionados."
-  }
-  ```
-</ResponseField>
-
-<ResponseField name="401 Unauthorized">
-  Authentication credentials are missing or invalid
-  
-  ```json
-  {
-    "ok": false,
-    "type": "error",
-    "action": "error",
-    "data": null,
-    "message": "Unauthorized access"
   }
   ```
 </ResponseField>

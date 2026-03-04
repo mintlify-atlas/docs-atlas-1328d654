@@ -7,10 +7,6 @@ description: 'Retrieve complete information about a technical support ticket'
 
 Retrieves complete information about a technical support ticket using its unique ID. This endpoint extracts essential elements such as the opening date, assigned priority, and checks the history to retrieve the latest response or current resolution status recorded in the external system.
 
-### Authentication
-
-This endpoint requires authentication using a Bearer token.
-
 ### Path Parameters
 
 <ParamField path="ticket_id" type="integer" required>
@@ -80,8 +76,7 @@ The endpoint returns a `BackendResponse` wrapper with the following structure:
 <CodeGroup>
 
 ```bash curl
-curl -X GET https://api.wisphub.net/api/v1/tickets/50 \
-  -H "Authorization: Bearer YOUR_API_KEY"
+curl -X GET https://api.wisphub.net/api/v1/tickets/50
 ```
 
 ```python Python
@@ -89,21 +84,15 @@ import requests
 
 ticket_id = 50
 url = f"https://api.wisphub.net/api/v1/tickets/{ticket_id}"
-headers = {
-    "Authorization": "Bearer YOUR_API_KEY"
-}
 
-response = requests.get(url, headers=headers)
+response = requests.get(url)
 print(response.json())
 ```
 
 ```javascript JavaScript
 const ticketId = 50;
 const response = await fetch(`https://api.wisphub.net/api/v1/tickets/${ticketId}`, {
-  method: 'GET',
-  headers: {
-    'Authorization': 'Bearer YOUR_API_KEY'
-  }
+  method: 'GET'
 });
 
 const data = await response.json();
